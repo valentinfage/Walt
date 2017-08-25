@@ -1,0 +1,13 @@
+<% @reminders.each do |reminder| %>
+        <%=link_to reminder_path(reminder) do %>
+        <ul>
+          <li><%=reminder.content%></li>
+          <li><%=reminder.date%></li>
+          <li><%=reminder.time%></li>
+          <li><%=reminder.recurrence%></li>
+        </ul>
+              <%= link_to reminder_path(reminder), method: :delete do %>
+              <i class="fa fa-close"></i>
+              <% end %>
+         <% end %>
+       <%end%>

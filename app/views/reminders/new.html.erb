@@ -1,0 +1,13 @@
+
+<div class="container">
+  <div class="center">
+    <h1>Nouveau reminder de <%= current_user.last_name%></h1>
+      <%=simple_form_for(@reminder) do |f| %>
+      <%=f.input :date %>
+      <%=f.input :time %>
+      <%=f.input :recurrence, as: :select, collection: Reminder.recurrences.keys, item_wrapper_tag: true, include_blank: true%>
+      <%=f.input :content %>
+      <%=f.submit%>
+      <%end%>
+  </div>
+</div>

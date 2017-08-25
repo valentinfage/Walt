@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170825091357) do
+ActiveRecord::Schema.define(version: 20170825140614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "reminders", force: :cascade do |t|
+    t.date     "date"
+    t.time     "time"
+    t.integer  "recurrence"
+    t.string   "day"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text     "content"
+    t.index ["user_id"], name: "index_reminders_on_user_id", using: :btree
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.integer  "notification_type"
+    t.datetime "send_date"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "reminder_id"
+    t.index ["reminder_id"], name: "index_states_on_reminder_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -28,8 +49,15 @@ ActiveRecord::Schema.define(version: 20170825091357) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "phone_number"
+    t.boolean  "phone_notification"
+    t.boolean  "web_notification"
+    t.string   "first_name"
+    t.string   "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "reminders", "users"
+  add_foreign_key "states", "reminders"
 end
