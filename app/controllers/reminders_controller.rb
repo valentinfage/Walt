@@ -17,7 +17,18 @@ class RemindersController < ApplicationController
     end
   end
 
+  def update
+    if @reminder.update(reminder_params)
+      flash[:notice] = "Votre reminder a bien été modifié"
+      redirect_to reminders_path
+    else
+      render :edit
+    end
+  end
+
   def edit
+      # flash[:notice] = "éditer votre projet"
+      # redirect_to root_path
   end
 
   def destroy
@@ -26,6 +37,7 @@ class RemindersController < ApplicationController
   end
 
   def index
+    flash[:notice] = "Voici tous vos projets"
     @reminders = current_user.reminders
   end
 
