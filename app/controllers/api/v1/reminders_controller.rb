@@ -1,6 +1,6 @@
 class Api::V1::RemindersController < Api::V1::BaseController
+    acts_as_token_authentication_handler_for User
 
-    acts_as_token_authentication_handler_for User, except: [ :index]
     before_action :set_reminder, only: [ :show, :update, :destroy ]
 
     def index
@@ -23,6 +23,9 @@ class Api::V1::RemindersController < Api::V1::BaseController
     def create
         @reminder = Reminder.new(reminder_params)
         @reminder.user = current_user
+        @reminder.jstime = Time.new(@reminder.date.year, @reminder.date.month,
+                                @reminder.date.day, @reminder.time.hour,
+                                @reminder.time.min).to_i * 1000
         authorize @reminder
         if @reminder.save
             render :index, status: :created
