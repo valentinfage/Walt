@@ -16,6 +16,9 @@ gem 'jquery-rails'
 gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
+gem 'chronic18n', github: "valentinfage/chronic18n"
+gem 'chronic', github: "valentinfage/chronic-master"
+# gem 'chronic', path: "../chronic-master" #pour tester avec chronic sur STT en local
 
 group :development, :test do
   gem 'pry-byebug'
