@@ -22,45 +22,22 @@ class Api::V1::RemindersController < Api::V1::BaseController
 
     def create
       # ici on create un reminder avec un hash dans laquelle on assigne les clés/valeurs recus en ajax par l'extension
-      # a nos propres tables de notre DB. Donc content = les params de content reçu par
+      # a nos propres tables de notre DB. Donc content = les params de content reçu par ajax
+      # Puis pour time: la valeur When part dans Chronic18n pour le parsing.
       @reminder = Reminder.new({
         content: reminder_params[:content],
         time: Chronic18n.parse(reminder_params[:when], :fr),
         user: current_user,
       })
+      # on autorise @reminder pour Pundit
       authorize @reminder
 
       if @reminder.save
-
-
-        puts "hellosave"
+        # lors du save on part dans les validations du modele reminder
         render :json => @reminder.to_json
       else
-        puts "helloerror"
         render_error
       end
-
-
-
-        # @reminder = Reminder.new(reminder_params)
-        # @reminder.user = current_user
-        # puts "hello1"
-        # time = check_time(params[:reminder][:when])
-        # puts "hello2"
-        # # reminder.date = time
-        # puts time
-
-
-
-
-      #   if @reminder.save
-      #       render :index, status: :created
-      #       puts "hello3"
-      #   else
-      #       render_error
-      #       puts "hello4"
-      #   end
-      # puts "hello5"
     end
 
     def destroy
