@@ -216,6 +216,7 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   pg
+  pry
   pry-byebug
   pry-rails
   puma

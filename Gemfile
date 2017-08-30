@@ -10,6 +10,7 @@ gem 'rails', '5.0.5'
 gem 'redis'
 gem 'pundit'
 gem 'simple_token_authentication'
+gem 'pry'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'

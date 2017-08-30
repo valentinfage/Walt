@@ -21,44 +21,52 @@ class Api::V1::RemindersController < Api::V1::BaseController
     end
 
     def create
-      # Parameters: {"type"=>"reminder", "when"=>"tomorow", "content"=>"pasta"}
-        # @var_content = JSON.parse(params[:content])
-        # @var_date = JSON.parse(params[:when])
-        # @var_action = JSON.parse(params[:type])
-        # render :json => params[:content]
-        # Content-Type: application/JSON
+      # ici on create un reminder avec un hash dans laquelle on assigne les clés/valeurs recus en ajax par l'extension
+      # a nos propres tables de notre DB. Donc content = les params de content reçu par
+      @reminder = Reminder.new({
+        content: reminder_params[:content],
+        time: Chronic18n.parse(reminder_params[:when], :fr),
+        user: current_user,
 
-        # @reminder = Reminder.new(reminder_params)
-          # if @reminder.save
-          #     render :json => @reminder,
-          #     :when => true
-          # else
-          #     render :json => @reminder.error
-          #     # render_error
-          # end
 
-        puts "hello"
-        @reminder = Reminder.new(reminder_params)
-        @reminder.user = current_user
-        puts "hello1"
-        time = check_time(params[:reminder][:when])
-        puts "hello2"
-        # reminder.date = time
-        puts time
+      })
+      authorize @reminder
 
+      if @reminder.save
 
         @reminder.jstime = Time.new(@reminder.date.year, @reminder.date.month,
-                                @reminder.date.day, @reminder.time.hour,
-                                @reminder.time.min).to_i * 1000
-        authorize @reminder
-        if @reminder.save
-            render :index, status: :created
-            puts "hello3"
-        else
-            render_error
-            puts "hello4"
-        end
-      puts "hello5"
+        @reminder.date.day, @reminder.time.hour,
+        @reminder.time.min).to_i * 1000
+        @reminder.save
+
+        puts "hellosave"
+        render :json => @reminder.to_json
+      else
+        puts "helloerror"
+        render_error
+      end
+
+
+
+        # @reminder = Reminder.new(reminder_params)
+        # @reminder.user = current_user
+        # puts "hello1"
+        # time = check_time(params[:reminder][:when])
+        # puts "hello2"
+        # # reminder.date = time
+        # puts time
+
+
+
+
+      #   if @reminder.save
+      #       render :index, status: :created
+      #       puts "hello3"
+      #   else
+      #       render_error
+      #       puts "hello4"
+      #   end
+      # puts "hello5"
     end
 
     def destroy
@@ -69,16 +77,9 @@ class Api::V1::RemindersController < Api::V1::BaseController
 
 private
 
-     def check_time(string)
-      Chronic.parse ("f")
-
-      puts string
-      puts "hello6"
-      return string
-     end
-
      def reminder_params
-        params.require(:reminder).permit(:content)
+        puts "helloparams"
+        params.require(:reminder).permit(:content, :type, :when)
      end
 
      def render_error
