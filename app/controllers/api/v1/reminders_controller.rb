@@ -27,8 +27,6 @@ class Api::V1::RemindersController < Api::V1::BaseController
         content: reminder_params[:content],
         time: Chronic18n.parse(reminder_params[:when], :fr),
         user: current_user,
-
-
       })
       authorize @reminder
 
