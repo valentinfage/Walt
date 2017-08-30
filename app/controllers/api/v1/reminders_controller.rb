@@ -32,10 +32,6 @@ class Api::V1::RemindersController < Api::V1::BaseController
 
       if @reminder.save
 
-        @reminder.jstime = Time.new(@reminder.date.year, @reminder.date.month,
-        @reminder.date.day, @reminder.time.hour,
-        @reminder.time.min).to_i * 1000
-        @reminder.save
 
         puts "hellosave"
         render :json => @reminder.to_json
