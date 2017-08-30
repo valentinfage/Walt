@@ -1,3 +1,16 @@
+GIT
+  remote: git://github.com/valentinfage/chronic-master.git
+  revision: aecae73f80b7343b80ae23482bac9144d103bf63
+  specs:
+    chronic (0.10.2)
+      numerizer (~> 0.2)
+
+GIT
+  remote: git://github.com/valentinfage/chronic18n.git
+  revision: c8b4deb10e660705fd32b1f8eeff497788c55403
+  specs:
+    chronic18n (0.0.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -90,6 +103,7 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
+    numerizer (0.2.0)
     orm_adapter (0.5.0)
     pg (0.21.0)
     pry (0.10.4)
@@ -193,6 +207,8 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   bootstrap-sass
+  chronic!
+  chronic18n!
   devise
   figaro
   font-awesome-sass
