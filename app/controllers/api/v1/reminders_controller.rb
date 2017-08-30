@@ -14,24 +14,57 @@ class Api::V1::RemindersController < Api::V1::BaseController
 
     def update
         if @reminder.update(reminder_params)
-            head :ok
+            render :index
         else
             render_error
         end
     end
 
     def create
-        @reminder = Reminder.new(reminder_params)
-        @reminder.user = current_user
+      # ici on create un reminder avec un hash dans laquelle on assigne les clés/valeurs recus en ajax par l'extension
+      # a nos propres tables de notre DB. Donc content = les params de content reçu par
+      @reminder = Reminder.new({
+        content: reminder_params[:content],
+        time: Chronic18n.parse(reminder_params[:when], :fr),
+        user: current_user,
+      })
+      authorize @reminder
+
+      if @reminder.save
+
         @reminder.jstime = Time.new(@reminder.date.year, @reminder.date.month,
-                                @reminder.date.day, @reminder.time.hour,
-                                @reminder.time.min).to_i * 1000
-        authorize @reminder
-        if @reminder.save
-            render :index, status: :created
-        else
-            render_error
-        end
+        @reminder.date.day, @reminder.time.hour,
+        @reminder.time.min).to_i * 1000
+        @reminder.save
+
+        puts "hellosave"
+        render :json => @reminder.to_json
+      else
+        puts "helloerror"
+        render_error
+      end
+
+
+
+        # @reminder = Reminder.new(reminder_params)
+        # @reminder.user = current_user
+        # puts "hello1"
+        # time = check_time(params[:reminder][:when])
+        # puts "hello2"
+        # # reminder.date = time
+        # puts time
+
+
+
+
+      #   if @reminder.save
+      #       render :index, status: :created
+      #       puts "hello3"
+      #   else
+      #       render_error
+      #       puts "hello4"
+      #   end
+      # puts "hello5"
     end
 
     def destroy
@@ -43,7 +76,8 @@ class Api::V1::RemindersController < Api::V1::BaseController
 private
 
      def reminder_params
-        params.require(:reminder).permit(:date, :day, :time, :recurrence, :content, :user_id)
+        puts "helloparams"
+        params.require(:reminder).permit(:content, :type, :when)
      end
 
      def render_error
