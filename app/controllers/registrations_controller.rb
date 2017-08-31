@@ -1,6 +1,5 @@
-class SessionsController < Devise::SessionsController
+class RegistrationsController < Devise::RegistrationsController
   protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/json' }
-  
-  respond_to :json
 
+  respond_to :json
 end
