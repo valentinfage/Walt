@@ -1,7 +1,7 @@
 class Api::V1::RemindersController < Api::V1::BaseController
     acts_as_token_authentication_handler_for User
 
-    before_action :set_reminder, only: [ :show, :update, :destroy ]
+    before_action :set_reminder, only: [ :show, :update, :destroy, :sendsms ]
 
     def index
         @reminders = policy_scope(Reminder)
@@ -49,7 +49,6 @@ class Api::V1::RemindersController < Api::V1::BaseController
 private
 
      def reminder_params
-        puts "helloparams"
         params.require(:reminder).permit(:content, :type, :when)
      end
 

@@ -18,6 +18,7 @@ class RemindersController < ApplicationController
     else
       render :new
     end
+    sendsms
   end
 
   def update
@@ -43,6 +44,15 @@ class RemindersController < ApplicationController
     flash[:notice] = "Voici tous vos projets"
     @reminders = current_user.reminders
   end
+
+  def sendsms
+    str = current_user.phone_number
+    numberregex = str.sub!(/^0/, "33")
+    # s = SmsFactor.sms("Hey 📆 ~> #{@reminder.content} | ❤️ ","'#{numberregex}'")
+    puts ("Hey 📆 ~> #{@reminder.content} | ❤️ '#{numberregex}'")
+  end
+
+
 
 private
 
