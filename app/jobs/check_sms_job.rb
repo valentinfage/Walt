@@ -48,4 +48,8 @@ end
 #dans application.rb puis SMS_ENABLED: "0" ou SMS_ENABLED: "1" pour activer
 #puis pour tester en local: rails c / CheckSmsJob.perform_now
 
+#TODO
+#cours sidekiq
+#PROCFILE
+#PUSH HEROKU
 
