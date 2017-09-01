@@ -11,8 +11,8 @@ gem 'redis'
 gem 'pundit'
 gem 'simple_token_authentication'
 gem 'sms_factor', github: "valentinfage/sms_factor"
-gem 'whenever', :require => false
-
+gem 'sidekiq'
+gem 'sidekiq-failures'
 
 
 gem 'autoprefixer-rails'
