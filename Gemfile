@@ -12,6 +12,7 @@ gem 'pundit'
 gem 'simple_token_authentication'
 gem 'sms_factor', github: "valentinfage/sms_factor"
 gem 'sidekiq'
+gem 'sidekiq-cron'
 gem 'sidekiq-failures'
 
 

@@ -20,22 +20,22 @@ ActiveRecord::Schema.define(version: 20170901102341) do
     t.integer  "recurrence"
     t.string   "day"
     t.integer  "user_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.text     "content"
     t.string   "jstime"
     t.datetime "time"
-    t.boolean  "phone_notification"
-    t.boolean  "web_notification"
+    t.boolean  "phone_notification", default: true
+    t.boolean  "web_notification",   default: true
     t.index ["user_id"], name: "index_reminders_on_user_id", using: :btree
   end
 
   create_table "states", force: :cascade do |t|
     t.datetime "send_date"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "reminder_id"
-    t.boolean  "status"
+    t.boolean  "status",      default: false
     t.index ["reminder_id"], name: "index_states_on_reminder_id", using: :btree
   end
 

@@ -9,28 +9,56 @@ class CheckSmsJob < ApplicationJob
       .joins(:state)
       .where(states: { status: false })
       .each do |reminder|
-        #requete SQL qui selectionne les reminders de Users qui ont un num de tel dans la DB, qui ont coché web notif pour LE reminder ET dont le statut send sms n'est pas encore passé en true
-        if reminder.time.to_i < DateTime.now.to_i # On compare le temps parsé par Chronic pour le reminder à l'heure actuel,
-          str = reminder.user.phone_number
-          numberregex = str.sub!(/^0/, "33") #ici on parse le numéro pour enlever le premier '0' du numéro de tel
+         # On compare le temps parsé par Chronic pour le reminder à l'heure actuel,
+         next unless reminder.time.to_i <= DateTime.now.to_i
 
-          if sms_enabled?
-            puts "Envoi du sms"
-            SmsFactor.sms("Hey~> #{reminder.content} | Love", '0695930425')
-          end
+        #requete SQL qui selectionne les reminders de Users qui ont un num de tel dans la DB,
+        #qui ont coché web notif pour LE reminder ET dont le statut send sms n'est pas encore passé en true
+        #On parse le numéro pour enlever le premier '0' du numéro de tel
+        str = reminder.user.phone_number
+        numberregex = str.sub!(/^0/, "33")
+        case true
 
-          # puts ("Hey 📆 ~> #{reminder.content} | ❤️ '#{numberregex}'")
-          changestate(reminder) #On appelle la methode pour changer de statut
+        when (reminder.recurrence == "Daily") # && !(reminder.recurrence.nil?)
+           reminder.time = (Time.now + (60*60*24))
+           puts "on lance lenvoi du sms daily"
+           sms(reminder, numberregex)
+          #TODO create a new reminder for the same hour the next day
+        when (reminder.recurrence == "Weekly")
+           reminder.time = (Time.now + (60*60*24)*7)
+           puts "on lance lenvoi du sms weekly"
+           sms(reminder, numberregex)
+          #TODO create a new reminder for the same hour the next week
+        when (reminder.recurrence == "Monthly")
+           reminder.time = (Time.now + (60*60*24)*30)
+           puts "on lance lenvoi du sms monthly"
+           sms(reminder, numberregex)
+          #TODO create a new reminder for the same hour the next month
+        when (reminder.recurrence == "Yearly")
+           reminder.time = (Time.now + (60*60*24)*364)
+           puts "on lance lenvoi du sms yearly"
+           sms(reminder, numberregex)
+        #TODO create a new reminder for the same hour the next year
         else
-          puts "c'est pas encore le moment d'envoyer un sms"
+           changestate(reminder.state) #On appelle la methode pour changer de statut
+           sms(reminder, numberregex)
         end
+        reminder.save
       end
   end
 
-  def changestate(reminder)
-      reminder.state.status = true
-      reminder.state.save
+  def changestate(state)
+      state.status = true
+      state.save
+     puts "le statut a changé"
       #On indique que la notif du sms a bien été envoyé. Le statut du reminder passe donc en true.
+  end
+
+  def sms(reminder, numberregex)
+    if sms_enabled?
+      puts "envoi du sms"
+      # SmsFactor.sms("Hey~> #{reminder.content} | Love", "'#{numberregex}'")
+    end
   end
 
   def sms_enabled?
@@ -45,11 +73,7 @@ end
 # heroku config:set SMS_ENABLED=0   ou heroku config:set SMS_ENABLED=1 pour activer
 
 #pour faire la même chose en local:
-#dans application.rb puis SMS_ENABLED: "0" ou SMS_ENABLED: "1" pour activer
+#dans application.yml puis SMS_ENABLED: "0" ou SMS_ENABLED: "1" pour activer
 #puis pour tester en local: rails c / CheckSmsJob.perform_now
 
-#TODO
-#cours sidekiq
-#PROCFILE
-#PUSH HEROKU
 

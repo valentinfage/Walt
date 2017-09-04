@@ -97,6 +97,8 @@ GEM
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
+    et-orbi (1.0.5)
+      tzinfo
     execjs (2.7.0)
     ffi (1.9.18)
     figaro (1.1.1)
@@ -188,6 +190,8 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    rufus-scheduler (3.4.2)
+      et-orbi (~> 1.0)
     sass (3.5.1)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -205,6 +209,9 @@ GEM
       json (~> 1.0)
       redis (~> 3.2, >= 3.2.1)
       redis-namespace (~> 1.5, >= 1.5.2)
+    sidekiq-cron (0.3.1)
+      rufus-scheduler (>= 2.0.24)
+      sidekiq (>= 2.17.3)
     sidekiq-failures (0.4.5)
       sidekiq (>= 2.16.0)
     simple_form (3.5.0)
@@ -273,6 +280,7 @@ DEPENDENCIES
   redis
   sass-rails
   sidekiq
+  sidekiq-cron
   sidekiq-failures
   simple_form
   simple_token_authentication

@@ -9,12 +9,15 @@ class RemindersController < ApplicationController
   def create
     @reminder = Reminder.new(reminder_params)
     @reminder.user_id = current_user.id
+    @state = State.new
     @reminder.jstime = Time.new(@reminder.date.year, @reminder.date.month,
                                 @reminder.date.day, @reminder.time.hour,
                                 @reminder.time.min).to_i * 1000
     if @reminder.save
       flash[:notice] = "Votre reminder à bien été ajouté"
-      redirect_to reminders_path
+    @state.reminder_id = @reminder.id
+    @state.save
+    redirect_to reminders_path
     else
       render :new
     end
@@ -61,6 +64,6 @@ private
   end
 
   def reminder_params
-    params.require(:reminder).permit(:date, :time, :recurrence, :day, :content)
+    params.require(:reminder).permit(:date, :time, :recurrence, :day, :content, :web_notification, :phone_notification)
   end
 end
