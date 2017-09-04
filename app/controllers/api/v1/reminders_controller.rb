@@ -30,6 +30,7 @@ class Api::V1::RemindersController < Api::V1::BaseController
         user: current_user,
         # phone_notification: reminder_params[:phone_notification]
         # web_notification: reminder_params[:web_notification]
+        # phone_number: reminder_params[:phone_number]
       })
       # on autorise @reminder pour Pundit
       authorize @reminder
@@ -85,7 +86,7 @@ class Api::V1::RemindersController < Api::V1::BaseController
 private
 
      def reminder_params
-        params.require(:reminder).permit(:content, :type, :when, :phone_notification, :web_notification)
+        params.require(:reminder).permit(:content, :type, :when, :phone_notification, :web_notification, :phone_number)
      end
 
      def render_error
