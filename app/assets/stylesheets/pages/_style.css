@@ -396,13 +396,13 @@ section {
     position:relative;
 }
 
-.play-video {
+/*.play-video {
     height:110px;
     position:absolute;
     top:50%;
     margin-top:-110px;
     width:100%;
-}
+}*/
 
 .play-icon {
     display: inline-block;
@@ -444,13 +444,13 @@ section {
     color:#fff;
 }
 
-.play-video .play-icon {
+/*.play-video .play-icon {
     background: rgba(255, 255, 255, 0.5);
     -webkit-transition: -webkit-transform ease-out 0.3s, background 0.4s;
     -moz-transition: -moz-transform ease-out 0.3s, background 0.4s;
     transition: transform ease-out 0.3s, background 0.4s;
-}
-
+}*/
+/*
 .play-video .play-icon:after {
     top: 0;
     left: 0;
@@ -462,7 +462,7 @@ section {
     -moz-transform: scale(0.9);
     -ms-transform: scale(0.9);
     transform: scale(0.9);
-}
+}*/
 
 .play-video .play-icon:hover {
     background: rgba(255, 255, 255, 0.05);
@@ -1288,20 +1288,20 @@ blockquote {
     height: 0;
     overflow: hidden;
 }
-
+/*
 .video_container iframe, .video_container object, .video_container embed {
     position: absolute;
     top: 0;
     left: 0;
     width: 100% !important;
     height: 100% !important;
-}
+}*/
 
 .slvj-lightbox iframe, .slvj-lightbox object, .slvj-lightbox embed {
     width: 100% !important;
     height: 529px !important;
 }
-
+/*
 .videojs-background-wrap {
     overflow: hidden;
     position: absolute;
@@ -1310,7 +1310,7 @@ blockquote {
     top: 0;
     left: 0;
     z-index: -998;
-}
+}*/
 
 #slvj-window {
     width: 100%;
