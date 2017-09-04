@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+
   devise_for :users, controllers: {
-        # registrations: 'users/registrations'
-      }
+    sessions: 'sessions',
+    registrations: 'registrations'
+  }
+
   resources :reminders, only: [:new, :create, :edit, :destroy, :index, :update]
   root to: 'pages#home'
 
