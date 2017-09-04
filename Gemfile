@@ -22,6 +22,7 @@ gem 'chronic18n', github: "valentinfage/chronic18n"
 gem 'chronic', github: "valentinfage/chronic-master"
 # gem 'chronic', path: "../chronic-master" #pour tester avec chronic sur STT en local
 
+# gem for dev
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
