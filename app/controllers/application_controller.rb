@@ -10,3 +10,4 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up)
   end
 end
+ # @user.family_name "petit rappel:" @reminder.content,

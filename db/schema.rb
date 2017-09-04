@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170830145619) do
+ActiveRecord::Schema.define(version: 20170901102341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,20 +20,22 @@ ActiveRecord::Schema.define(version: 20170830145619) do
     t.integer  "recurrence"
     t.string   "day"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.text     "content"
     t.string   "jstime"
     t.datetime "time"
+    t.boolean  "phone_notification", default: true
+    t.boolean  "web_notification",   default: true
     t.index ["user_id"], name: "index_reminders_on_user_id", using: :btree
   end
 
   create_table "states", force: :cascade do |t|
-    t.integer  "notification_type"
     t.datetime "send_date"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "reminder_id"
+    t.boolean  "status",      default: false
     t.index ["reminder_id"], name: "index_states_on_reminder_id", using: :btree
   end
 
@@ -51,8 +53,6 @@ ActiveRecord::Schema.define(version: 20170830145619) do
     t.datetime "created_at",                                     null: false
     t.datetime "updated_at",                                     null: false
     t.string   "phone_number"
-    t.boolean  "phone_notification"
-    t.boolean  "web_notification"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "authentication_token",   limit: 30

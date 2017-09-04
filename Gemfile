@@ -10,6 +10,11 @@ gem 'rails', '5.0.5'
 gem 'redis'
 gem 'pundit'
 gem 'simple_token_authentication'
+gem 'sms_factor', github: "valentinfage/sms_factor"
+gem 'sidekiq'
+gem 'sidekiq-cron'
+gem 'sidekiq-failures'
+
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
@@ -22,6 +27,7 @@ gem 'chronic18n', github: "valentinfage/chronic18n"
 gem 'chronic', github: "valentinfage/chronic-master"
 # gem 'chronic', path: "../chronic-master" #pour tester avec chronic sur STT en local
 
+# gem for dev
 group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'

@@ -1,6 +1,6 @@
 class Reminder < ApplicationRecord
   belongs_to :user
-  has_many :states
+  has_one :state
 
   enum recurrence: [:Daily, :Weekly, :Monthly, :Yearly]
 

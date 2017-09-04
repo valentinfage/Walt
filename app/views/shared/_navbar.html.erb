@@ -1,58 +1,88 @@
-<div class="navbar-wagon">
-  <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png" %>
-  <% end %>
-
-  <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
-
-    <% if user_signed_in? %>
-
-      <!-- Links when logged in -->
-      <%= link_to "Host", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Trips", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Messages", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-
-      <!-- Avatar with dropdown menu -->
-      <div class="navbar-wagon-item">
-        <div class="dropdown">
-          <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-home"></i>  <%= t(".profile", default: "Home") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-              <% end %>
-            </li>
-          </ul>
-        </div>
-      </div>
-    <% else %>
-      <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
-    <% end %>
-  </div>
-
-  <!-- Dropdown list appearing on mobile only -->
-  <div class="navbar-wagon-item hidden-md hidden-lg">
-    <div class="dropdown">
-      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
-      </ul>
-    </div>
-  </div>
+<div class="page-border" data-wow-duration="0.7s" data-wow-delay="0.2s">
+    <div class="top-border wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;"></div>
+    <div class="right-border wow fadeInRight animated" style="visibility: visible; animation-name: fadeInRight;"></div>
+    <div class="bottom-border wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;"></div>
+    <div class="left-border wow fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;"></div>
 </div>
 
+<div id="wrapper">
+
+    <header id="banner" class="scrollto clearfix" data-enllax-ratio=".5">
+        <div id="header" class="nav-collapse">
+            <div class="row clearfix">
+                <div class="col-1">
+
+                    <!--Logo-->
+                    <div id="logo">
+
+                        <!--Logo that is shown on the banner-->
+                        <%=image_tag "logo.png", id: "banner-logo", alt: "Landing Page" %>
+                       <!--  <img src="images/logo.png" id="banner-logo" alt="Landing Page"/> -->
+                        <!--End of Banner Logo-->
+
+                        <!--The Logo that is shown on the sticky Navigation Bar-->
+                        <%=image_tag "logo-2.png", id: "navigation-logo", alt: "Landing Page" %>
+                      <!--   <img src="images/logo-2.png" id="navigation-logo" alt="Landing Page"/> -->
+                        <!--End of Navigation Logo-->
+
+                    </div>
+                    <!--End of Logo-->
+
+                    <aside>
+
+                        <!--Social Icons in Header-->
+                        <!-- <ul class="social-icons">
+                            <li>
+                                <a target="_blank" title="Facebook" href="https://www.facebook.com/username">
+                                    <i class="fa fa-facebook fa-1x"></i><span>Facebook</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" title="Twitter" href="http://www.twitter.com/username">
+                                    <i class="fa fa-twitter fa-1x"></i><span>Twitter</span>
+                                </a>
+                            </li> -->
+                            <!-- <li>
+                                <a target="_blank" title="Instagram" href="http://www.instagram.com/username">
+                                    <i class="fa fa-instagram fa-1x"></i><span>Instagram</span>
+                                </a>
+                            </li> -->
+                        </ul>
+                        <!--End of Social Icons in Header-->
+
+                    </aside>
+
+                    <!--Main Navigation-->
+                    <nav id="nav-main">
+                        <ul>
+                            <li>
+                                <a href="#banner">Home</a>
+                            </li>
+                           <!--  <li>
+                                <a href="#about">About</a>
+                            </li> -->
+                            <!-- <li>
+                                <a href="#gallery">Gallery</a>
+                            </li> -->
+                            <li>
+                                <a href="#download">Download</a>
+                            </li>
+                            <!-- <li>
+                                <a href="#testimonials">Testimonials</a>
+                            </li> -->
+                            <!-- <li>
+                                <a href="#clients">Clients</a>
+                            </li> -->
+                         <!--    <li>
+                                <a href="#pricing">Pricing</a>
+                            </li>
+                        </ul> -->
+                    </nav>
+                    <!--End of Main Navigation-->
+
+                    <div id="nav-trigÏger"><span></span></div>
+                    <nav id="nav-mobile"></nav>
+
+                </div>
+            </div>
+        </div><!--End of Header-->

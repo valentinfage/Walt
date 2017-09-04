@@ -3,6 +3,12 @@
      <%=f.input :date %>
      <%=f.input :time %>
      <%=f.input :recurrence, as: :select, collection: Reminder.recurrences.keys, item_wrapper_tag: true, include_blank: true%>
+     <%=f.input :phone_notification, as: :select, collection: Reminder.phone_notification, item_wrapper_tag: true, include_blank: true%>
+     <%=f.input_field :phone_notification, as: :boolean%>
+     <%=f.input_field :web_notification, as: :boolean%>
      <%=f.input :content %>
      <%=f.submit %>
+
      <%end%>
+
+
