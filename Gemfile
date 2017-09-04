@@ -10,6 +10,11 @@ gem 'rails', '5.0.5'
 gem 'redis'
 gem 'pundit'
 gem 'simple_token_authentication'
+gem 'sms_factor', github: "valentinfage/sms_factor"
+gem 'sidekiq'
+gem 'sidekiq-cron'
+gem 'sidekiq-failures'
+
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
