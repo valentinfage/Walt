@@ -28,8 +28,8 @@ class Api::V1::RemindersController < Api::V1::BaseController
         content: reminder_params[:content],
         time: Chronic18n.parse(reminder_params[:when], :fr),
         user: current_user,
-        phone_notification: reminder_params[:phone_notification],
-        web_notification: reminder_params[:web_notification]
+        # phone_notification: reminder_params[:phone_notification],
+        # web_notification: reminder_params[:web_notification]
       })
       # on autorise @reminder pour Pundit
       authorize @reminder
@@ -39,9 +39,9 @@ class Api::V1::RemindersController < Api::V1::BaseController
       if @reminder.save
         # lors du save on part dans les validations du modele reminder
         render :json => @reminder.to_json
-        user = User.find(current_user.id)
-        user.phone_number = reminder_params[:phone_number]
-        user.save
+        # user = User.find(current_user.id)
+        # user.phone_number = reminder_params[:phone_number]
+        # user.save
         @state.reminder_id = @reminder.id
         @state.save
         recurrence(@reminder)
