@@ -1,4 +1,4 @@
 check_sms:
-  cron: '0 * * * * *'   # Runs once per minute
+  cron: '* * * * * *'   # Runs once per minute
   class: CheckSmsJob
   queue: default
