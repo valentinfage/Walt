@@ -11,3 +11,7 @@ class ApplicationController < ActionController::Base
   end
 end
  # @user.family_name "petit rappel:" @reminder.content,
+
+def default_url_options
+  { host: ENV['HOST'] || 'localhost:3000' }
+end
