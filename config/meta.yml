@@ -1,0 +1,19 @@
+# config/meta.yml
+
+meta_product_name: "Walt"
+meta_title: "Walt - The easiest to remind !"
+meta_description: "Walt is a powerful smart IA assistant. It'll help you with all of you reminders, simply type:
+- reminder
+- whatever you want to be reminded of
+- when you want to be reminded, there's not specific format. Simply type what's in your head (in 10 minutes / Every monday at 3.00 pm / The 3rd of January and so forth)
+
+You will then receive a web chrome notification pop up once at the selected time! You can also receive text notifications on your phone in case you're not in front of your screen!
+
+Being an open-source project, Walt will get smarter everyday and will be able to deal with emails, translations and so much more features!
+
+Stay tuned ;)
+
+Enjoy!
+"
+meta_image: "logo.png"                           # Une image dans votre dossier app/assets/images/
+twitter_account: "@nomdevotrecompte"              # indispensable pour les Twitter Cards
