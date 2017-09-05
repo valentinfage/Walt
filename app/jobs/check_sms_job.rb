@@ -56,7 +56,7 @@ class CheckSmsJob < ApplicationJob
 
   def sms(reminder, numberregex)
     if sms_enabled?
-      puts "envoi du sms"
+      Rails.logger.info "sms envoyé"
       # SmsFactor.sms("Hey~> #{reminder.content} | Love", "'#{numberregex}'")
     end
   end
