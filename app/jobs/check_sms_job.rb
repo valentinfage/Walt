@@ -9,13 +9,6 @@ class CheckSmsJob < ApplicationJob
       sr.state.status == false && sr.user.phone_number.present?
     }
 
-    # Reminder
-    #   .joins(:user)
-    #   .where
-    #   .not(users: { phone_number: nil })
-    #   .where(reminders: { phone_notification: true })
-    #   .joins(:state)
-    #   .where(states: { status: false })
     valid_reminders.each do |reminder|
          # On compare le temps parsé par Chronic pour le reminder à l'heure actuel,
          next unless reminder.time.to_i <= DateTime.now.to_i
@@ -65,7 +58,7 @@ class CheckSmsJob < ApplicationJob
   def sms(reminder, numberregex)
     if sms_enabled?
       # Rails.logger.info"sms envoyé"
-      SmsFactor.sms("Hey~> #{reminder.content} | Love", "'#{numberregex}'")
+      SmsFactor.sms("Yo!~> #{reminder.content} | Walt.", "'#{numberregex}'")
     end
   end
 
