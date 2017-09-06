@@ -780,6 +780,7 @@ h6 {
 
 #banner {
     background-size: cover;
+    background-image: linear-gradient(-225deg, rgba(90,90,90,0.35) 0%, rgba(90,90,90,0.35) 50%), url('/assets/banner-image-1.jpg');
 }
 
 #banner-content.row {
@@ -2326,6 +2327,6 @@ blockquote {
 
 }
 
-
-
-
+.no-underline:hover {
+  text-decoration: none;
+}
