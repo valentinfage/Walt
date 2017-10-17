@@ -14,6 +14,7 @@ gem 'sms_factor', github: "valentinfage/sms_factor"
 gem 'sidekiq'
 gem 'sidekiq-cron'
 gem 'sidekiq-failures'
+gem 'mail'
 
 
 gem 'autoprefixer-rails'
@@ -36,3 +37,28 @@ group :development, :test do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+
+
+
+# 1/
+# Mail.defaults do
+#   delivery_method :smtp, { :address    => "smtp.gmail.com",
+#                           :port       => 587,
+#                           :user_name  => 'alexisbetopro@gmail.com',
+#                           :password   => 'Aliens90',
+#                           :authentication => :plain,
+#                           :enable_starttls_auto => true
+#                         }
+# end
+
+# 2/
+# mail = Mail.new do
+#   from     'alex'
+#   to       'noxx.sound@gmail.com'
+#   subject  'Here is the image you wanted'
+#   body     'Hey'
+# end
+
+# 3/
+# mail.deliver!
+

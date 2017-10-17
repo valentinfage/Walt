@@ -101,3 +101,21 @@ private
         authorize @reminder # For Pundit
      end
 end
+
+# Mail.defaults do
+#   delivery_method :smtp, { :address    => "smtp.gmail.com",
+#                           :port       => 587,
+#                           :user_name  => 'alexisbetopro@gmail.com',
+#                           :password   => ENV['aliens90'],
+#                           :authentication => :plain,
+#                           :enable_starttls_auto => true
+#                         }
+# end
+
+# mail = Mail.new do
+#   from     'alexisbetopro@gmail.com'
+#   to       'noxx.sound@gmail.com'
+#   subject  'Here is the image you wanted'
+#   body     'Hey there!'
+# end
+
