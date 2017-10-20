@@ -1,7 +1,7 @@
 class Api::V1::EmailsController < Api::V1::BaseController
    acts_as_token_authentication_handler_for User
 
-    before_action :set_email, only: [ :show, :update, :destroy, :sendsms ]
+    before_action :set_email, only: [ :show, :index, :update, :destroy, :sendsms ]
 
   def index
       @emails = policy_scope(Email)
