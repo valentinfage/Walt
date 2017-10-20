@@ -14,8 +14,7 @@ class Api::V1::EmailsController < Api::V1::BaseController
 
   def create
     @email = Email.new({
-        receiver: email_params[:content],
-        content: email_params[:when],
+        content: email_params[:content],
         # object: email_params[:object],
         user: current_user,
         phone_notification: reminder_params[:phone_notification],
