@@ -1,4 +1,4 @@
-class EmailController < ApplicationController
+class Api::V1::EmailController < Api::V1::BaseController
    acts_as_token_authentication_handler_for User
 
     before_action :set_email, only: [ :show, :update, :destroy, :sendsms ]
