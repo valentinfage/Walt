@@ -1,2 +1,11 @@
-<h1>Email#index</h1>
-<p>Find me in app/views/email/index.html.erb</p>
+<% @emails.each do |email| %>
+        <ul>
+          <li><%=email.content%></li>
+        </ul>
+              <%= link_to edit_email_path(email) do %>
+              <i class="fa fa-edit">edit</i>
+              <% end %>
+              <%= link_to email_path(email), method: :delete do %>
+              <i class="fa fa-close"></i>
+              <% end %>
+       <%end%>
