@@ -15,9 +15,14 @@ Rails.application.routes.draw do
       namespace :v1 do
         resources :reminders, only: [:new, :create, :edit, :destroy, :index, :update] do
           post "send", to: "reminders#sendsms"
+      end
+    end
+  end
+
+    namespace :api, defaults: { format: :json } do
+      namespace :v1 do
         resources :emails, only: [:new, :create, :edit, :destroy, :index, :update] do
           post "send", to: "emails#sendsms"
-        end
       end
     end
   end
