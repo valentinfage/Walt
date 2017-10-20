@@ -12,28 +12,27 @@ class Api::V1::EmailsController < Api::V1::BaseController
   def show
   end
 
-  def new
-  end
-
   def create
     @email = Email.new({
-        content: email_params[:content],
-        object: email_params[:object],
-        receiver: email_params[:receiver],
+        receiver: email_params[:content],
+        content: email_params[:when],
+        # object: email_params[:object],
         user: current_user,
+        phone_notification: reminder_params[:phone_notification],
+        web_notification: reminder_params[:web_notification]
       })
       # on autorise @reminder pour Pundit
       authorize @email
       @email.user_id = current_user.id
 
-      puts "hello"
-
-  end
-
-  def edit
   end
 
   def update
+    if @email.update(email_params)
+        render :index
+    else
+        render_error
+    end
   end
 
   def destroy
