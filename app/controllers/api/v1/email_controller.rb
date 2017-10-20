@@ -28,25 +28,6 @@ class EmailController < ApplicationController
 
       puts "hello"
 
-      # if @email.save
-      #   # lors du save on part dans les validations du modele reminder
-      #   render :json => @email.to_json
-      #   user = User.find(current_user.id)
-      #   user.phone_number = reminder_params[:phone_number]
-      #   user.save
-      #   @state.reminder_id = @reminder.id
-      #   @state.save
-      #   recurrence(@reminder)
-      # else
-      #   render_error
-      # end
-
-      # mail = Mail.new do
-      #   from     'alex'
-      #   to       'noxx.sound@gmail.com'
-      #   subject  'Here is the image you wanted'
-      #   body     'Hey'
-      # end
   end
 
   def edit
