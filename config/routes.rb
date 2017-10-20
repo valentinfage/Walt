@@ -15,9 +15,6 @@ Rails.application.routes.draw do
       namespace :v1 do
         resources :reminders, only: [:new, :create, :edit, :destroy, :index, :update] do
           post "send", to: "reminders#sendsms"
-        resources :emails, only: [:new, :create, :edit, :destroy, :index, :update] do
-          post "send", to: "emails#sendsms"
-        end
       end
     end
   end
